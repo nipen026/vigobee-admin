@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { Typography } from '@mui/material';
-import ProductTable from '../../Component/Producttable';
+
 import ProductForm from '../../Component/ProductForm';
+import ProductTable from '../../Component/ProductTable';
 
 const Product = () => {
   return (
