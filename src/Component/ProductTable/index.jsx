@@ -197,6 +197,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { GET_PRODUCT } from '../../api/get';
+import { DELETE_PRODUCT } from '../../api/delete';
 
 const royalGreen = '#014421';
 const white = '#ffffff';
@@ -226,7 +227,15 @@ const ProductTable = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
-
+  const handleDeleteProduct = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this product?")) return; 
+    DELETE_PRODUCT(id).then((res) => {
+      toast.success("Product deleted successfully");
+      fetchProducts();
+    }).catch((err) => {
+      toast.error("Failed to delete product");
+    });
+  }
   if (loading) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" height="50vh">
@@ -324,7 +333,7 @@ const ProductTable = () => {
                       <IconButton size="small" color="inherit" onClick={() => navigate(`/product-form?id=${product.id}`)}>
                         <Pencil size={16} />
                       </IconButton>
-                      <IconButton size="small" color="inherit"><Trash size={16} /></IconButton>
+                      <IconButton size="small" color="inherit" onClick={()=>handleDeleteProduct(product.id)}><Trash size={16} /></IconButton>
                     </Stack>
                   </TableCell>
                 </TableRow>
