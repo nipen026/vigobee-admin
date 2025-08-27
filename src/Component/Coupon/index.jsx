@@ -125,7 +125,7 @@ const Coupon = () => {
               required
             >
               <MenuItem value="percentage">Percentage (%)</MenuItem>
-              <MenuItem value="fixed">Fixed Amount (₹)</MenuItem>
+              <MenuItem value="flat">Fixed Amount (₹)</MenuItem>
             </TextField>
             <TextField
               label="Discount Value"
